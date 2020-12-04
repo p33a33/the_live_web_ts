@@ -13,11 +13,16 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
       <title>{title}</title>
     </Head>
     <header>
-      <nav>
-        <Link href={"/"}><a>Home</a></Link> {" "} | {" "}
-        <Link href={"/StreamingList"}><a>방송 목록</a></Link> {" "} | {" "}
-        <Link href={"/ItemList"}><a>상품 목록</a></Link> {" "} | {" "}
-        <Link href={"/Mypage"}><a>마이페이지</a></Link>
+      <nav style={{ display: "flex", width: "100%" }}>
+        <div>
+          <Link href={"/"}><a>Home</a></Link> {" "} | {" "}
+          <Link href={"/StreamingList"}><a>방송 목록</a></Link> {" "} | {" "}
+          <Link href={"/ItemList"}><a>상품 목록</a></Link> {" "} | {" "}
+          <Link href={"/Mypage"}><a>마이페이지</a></Link>
+        </div>
+        <div>
+          <Link href={"/Signin"}><a>로그인</a></Link>
+        </div>
       </nav>
     </header>
     <hr />
