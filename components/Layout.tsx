@@ -11,29 +11,20 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => (
   <div>
     <Head>
       <title>{title}</title>
-      <meta charSet="utf-8" />
-      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
     </Head>
     <header>
       <nav>
-        <Link href="/">
-          <a>Home</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/about">
-          <a>About</a>
-        </Link>{' '}
-        |{' '}
-        <Link href="/users">
-          <a>Users List</a>
-        </Link>{' '}
-        | <a href="/api/users">Users API</a>
+        <Link href={"/"}><a>Home</a></Link> {" "} | {" "}
+        <Link href={"/StreamingList"}><a>방송 목록</a></Link> {" "} | {" "}
+        <Link href={"/ItemList"}><a>상품 목록</a></Link> {" "} | {" "}
+        <Link href={"/Mypage"}><a>마이페이지</a></Link>
       </nav>
     </header>
+    <hr />
     {children}
     <footer>
       <hr />
-      <span>I'm here to stay (Footer)</span>
+      <div>footer here</div>
     </footer>
   </div>
 )
