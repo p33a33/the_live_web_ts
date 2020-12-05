@@ -1,0 +1,60 @@
+.header {
+    display : flex;
+    justify-content: center;
+    align-items: center;
+    height: 830px*0.1;
+}
+
+.nav {
+    width : 1216px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    font-size: 4rem;
+    font-weight: bold;
+    letter-spacing: 6px;
+}
+
+.menu {
+    font-size: 2rem;
+    font-weight: bold;
+    width: 35%;
+    display: flex;
+    align-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:link {
+    color : rgb(58, 58, 58)
+}
+
+a:visited {
+    color : rgb(58, 58, 58)
+}
+
+.footer {
+    display : flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 830px*0.1;
+    background-color: rgb(231, 231, 231);
+}
+
+.info {
+    display: flex;
+    width: 18%;
+    justify-content: space-around;
+    a {
+        color: rgb(15, 111, 255);
+    }
+
+}

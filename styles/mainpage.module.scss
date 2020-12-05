@@ -1,5 +1,34 @@
-.banner{
-        width: 100%;
-        padding-top : 12.37%;
-        background-color: lightcoral;
+section {
+        margin-bottom: 50px;
+}
+
+.banner {
+        display : flex;
+        flex-direction: column;
+        justify-content: center;
+        height:  (830px * 0.40) // 830px은 1280*960 해상도의 vh임
+}
+
+.streaming {
+        display : flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: (830px * 0.55); 
+}
+
+.item {
+        display : flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: (830px * 0.55);
+}
+
+.sectionTitle {
+        text-align: left;
+        font-weight: bold;
+        font-size : 3rem;
+        width : 1216px;
+        margin-bottom: 20px;
 }

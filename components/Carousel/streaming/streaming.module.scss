@@ -1,0 +1,10 @@
+.image{
+    width : ((1280px - 128px)/2);
+    margin-left : 32px;
+    margin-right : 32px;
+    object-fit: cover;
+}
+
+.image:hover{
+    cursor: pointer;
+}

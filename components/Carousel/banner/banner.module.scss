@@ -1,0 +1,28 @@
+.container{
+    width : 100%;
+    height: 100%;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.slideContainer{
+    width : 100%;
+    display: flex;
+}
+
+.image{
+    width : 100%;
+    object-fit: cover;
+}
+
+.image:hover{
+    cursor: pointer;
+}
+
+.navigator {
+    display: flex;
+    justify-content: center;
+}
