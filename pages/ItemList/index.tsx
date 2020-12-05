@@ -1,5 +1,4 @@
-import { totalmem } from 'os'
-import Layout from '../../components/Layout'
+import Layout from '../../components/Layout/Layout'
 
 const ItemList = () => {
     return (
