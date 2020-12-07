@@ -16,3 +16,16 @@ body {
     font-size: 1.5rem;
     margin : 0;
 }
+
+@media all and (min-width:640px) and (max-width:1279px) {
+    html {
+        font-size: 55%;
+    }
+}
+
+/* 모바일 세로 (해상도 639~)*/
+@media all and (max-width:639px) {
+    html {
+        font-size: 48%;
+    }
+}

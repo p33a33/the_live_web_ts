@@ -12,10 +12,12 @@ const ItemSlide = ({ data }: { data: slideData }) => {
     return (
         <div>
             <img className={styles.image} src={data.imgSrc} onClick={() => Router.push(data.linkTo)} />
-            <div style={{ textAlign: "center" }}>{data.title}</div>
-            <div style={{ textAlign: "center" }}>
-                <div>{`${addComma(data.currnetPrice)}원`} <span style={{ textDecoration: "line-through" }}>{`${addComma(data.originalPrice)}원`}</span></div>
-            </div>
+            <dl>
+                <dt className={styles.title} style={{ textAlign: "center" }}>{data.title}</dt>
+                <dd style={{ textAlign: "center" }}>
+                    <div className={styles.price}>{`${addComma(data.currnetPrice)}원`} <span style={{ textDecoration: "line-through" }}>{`${addComma(data.originalPrice)}원`}</span></div>
+                </dd>
+            </dl>
         </div>
     )
 }

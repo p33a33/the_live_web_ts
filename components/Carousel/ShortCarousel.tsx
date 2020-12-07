@@ -3,17 +3,33 @@ import StreamingSlide from "./streaming/StreamingSlide"
 import ItemSlide from "./item/ItemSlide"
 import styles from './shortCarousel.module.scss'
 import { carouselType, slideData } from "../../interfaces/globalTypes"
+import { useSwipeable } from 'react-swipeable'
 
 const ShortCarousel = ({ carouselType, datas }: { carouselType: carouselType, datas: Array<slideData> }) => {
 
+    let [currentSlide, setCurrentSlide] = useState<number>(0)
+
     let TOTAL_SLIDE: number = 0;
 
-    switch (carouselType) {
-        case "streaming": TOTAL_SLIDE = datas.length / 2; break;
-        case "item": TOTAL_SLIDE = datas.length / 4; break;
-    }
+    useEffect(() => {
+        if (window.innerWidth > 1279) {
+            switch (carouselType) {
+                case "streaming": TOTAL_SLIDE = datas.length / 2; break;
+                case "item": TOTAL_SLIDE = datas.length / 4; break;
+            }
+        } else if (window.innerWidth > 639) {
+            switch (carouselType) {
+                case "streaming": TOTAL_SLIDE = datas.length; break;
+                case "item": TOTAL_SLIDE = datas.length / 2; break;
+            }
+        } else {
+            switch (carouselType) {
+                case "item": TOTAL_SLIDE = datas.length; break;
+            }
+        }
+    })
 
-    let [currentSlide, setCurrentSlide] = useState<number>(0)
+
     let slideRef = useRef(null);
 
     let nextSlide = () => {
@@ -37,19 +53,20 @@ const ShortCarousel = ({ carouselType, datas }: { carouselType: carouselType, da
         slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
     }, [currentSlide])
 
+    const swipeHandler = useSwipeable({ onSwipedLeft: nextSlide, onSwipedRight: prevSlide })
+
     return (
         <>
-            <div className={styles.container}>
+            <div className={styles.container} {...swipeHandler} >
                 <div className={styles.slideContainer} ref={slideRef}>
                     {carouselType === "streaming" ?
                         datas.map((data, idx) => <StreamingSlide data={data} key={idx} />)
                         : datas.map((data, idx) => <ItemSlide data={data} key={idx} />)}
                 </div>
             </div>
-            <div className={styles.navigator}>
-                <button onClick={prevSlide}>{"\<"}</button>
-                <button onClick={nextSlide}>{"\>"}</button>
-                <span>{currentSlide + 1}/{TOTAL_SLIDE}</span>
+            <div className={styles.buttonLine}>
+                <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevSlide} />
+                <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextSlide} />
             </div>
         </>
     )
