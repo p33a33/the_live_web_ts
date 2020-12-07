@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react"
 import BannerSlide from "./BannerSlide"
 import styles from './banner.module.scss'
 import { slideData } from "../../../interfaces/globalTypes"
+import { useSwipeable } from 'react-swipeable'
 
 const BannerCarousel = ({ datas }: { datas: Array<slideData> }) => {
 
@@ -31,17 +32,19 @@ const BannerCarousel = ({ datas }: { datas: Array<slideData> }) => {
         slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
     }, [currentSlide])
 
+    const swipeHandler = useSwipeable({ onSwipedLeft: nextSlide, onSwipedRight: prevSlide })
+
     return (
         <>
-            <div className={styles.container}>
+            <div className={styles.container} {...swipeHandler}>
                 <div className={styles.slideContainer} ref={slideRef}>
                     {datas.map((data, idx) => <BannerSlide data={data} key={idx} />)}
                 </div>
             </div>
-            <div className={styles.navigator}>
-                <button onClick={prevSlide}>{"\<"}</button>
-                <button onClick={nextSlide}>{"\>"}</button>
+            <div className={styles.buttonLine}>
+                <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevSlide} />
                 <span>{currentSlide + 1}/{TOTAL_SLIDE}</span>
+                <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextSlide} />
             </div>
         </>
     )

@@ -12,10 +12,12 @@ const StreamingSlide = ({ data }: { data: slideData }) => {
     return (
         <div>
             <img className={styles.image} src={data.imgSrc} onClick={() => Router.push(data.linkTo)} />
-            <div style={{ textAlign: "center" }}>{data.title}</div>
-            <div style={{ textAlign: "center" }}>
-                <div>{addComma(data.viewerCount)}명 시청중</div>
-            </div>
+            <dl>
+                <dt className={styles.title} style={{ textAlign: "center" }}>{data.title}</dt>
+                <dd className={styles.viewer} style={{ textAlign: "center" }}>
+                    <div>{addComma(data.viewerCount)}명 시청중</div>
+                </dd>
+            </dl>
         </div>
     )
 }

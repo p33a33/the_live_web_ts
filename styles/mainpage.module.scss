@@ -6,7 +6,8 @@ section {
         display : flex;
         flex-direction: column;
         justify-content: center;
-        height:  (830px * 0.40) // 830px은 1280*960 해상도의 vh임
+        align-items: center;
+        height:  30vh 
 }
 
 .streaming {
@@ -14,7 +15,15 @@ section {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: (830px * 0.55); 
+        height: fit-content
+}
+
+.streamingCarousel {
+        display : block;
+}
+
+.streamingList {
+        display: none;
 }
 
 .item {
@@ -22,7 +31,7 @@ section {
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: (830px * 0.55);
+        height: fit-content;
 }
 
 .sectionTitle {
@@ -32,3 +41,24 @@ section {
         width : 1216px;
         margin-bottom: 20px;
 }
+
+@media all and (min-width:640px) and (max-width:1279px) {
+        .sectionTitle {
+            width: 100%;
+            margin-inline-start: 30px;
+        }
+    }
+    
+    /* 모바일 세로 (해상도 639~)*/
+    @media all and (max-width:639px) {
+        .sectionTitle {
+                width: 100%;
+                margin-inline-start: 30px;
+        }
+        .streamingCarousel {
+                display : none;
+        }
+        .streamingList {
+                display: block;
+        }
+    }
