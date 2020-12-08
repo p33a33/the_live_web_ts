@@ -1,9 +1,14 @@
-li {
-    list-style: none;
+.container {
+    display: flex;
+    align-items: center;
 }
 
 ul {
     padding : 0
+}
+
+li {
+    list-style: none;
 }
 
 .buttonLine {
