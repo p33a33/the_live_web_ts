@@ -10,13 +10,17 @@ type Props = {
 
 const Layout = ({ children, title = 'This is the default title' }: Props) => {
 
-  const [isMenuClicked, setIsMenuClicked] = useState<boolean>(false)
+  const [isMenuClicked, setIsMenuClicked] = useState<boolean>(true)
 
   const hamburgerButtonHandler = () => {
     setIsMenuClicked(!isMenuClicked)
+    console.log("state changed")
   }
 
-  useEffect(hamburgerButtonHandler, [children]) // 햄버거 메뉴 렌더 후 페이지 이동시 isMenuClicke 상태가 false로 전환됩니다.
+  useEffect(() => {
+    console.log(children)
+    hamburgerButtonHandler()
+  }, [children]) // 햄버거 메뉴 렌더 후 페이지 이동시 isMenuClicke 상태가 false로 전환됩니다.
 
   return (
     <div>
@@ -34,14 +38,17 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
             <div className={styles.burgerLine} />
           </button>
 
-          {/* 태블릿 이상의 환경에서는 nav에 메뉴가 표시됩니다. */}
-          <ul className={`${styles.menu} ${isMenuClicked ? styles.clickedMenu : ""}`} onClick={hamburgerButtonHandler}>
-            <li><Link href={"/"}><a>홈</a></Link></li>
-            <li><Link href={"/StreamingList"}><a>방송목록</a></Link></li>
-            <li><Link href={"/ItemList"}><a>상품목록</a></Link></li>
-            <li><Link href={"/Mypage"}><a>마이페이지</a></Link></li>
-            <li><Link href={"/Signin"}><a>로그인</a></Link></li>
-          </ul>
+          {/* 태블릿 이상의 환경에서는 nav에 메뉴가 표시됩니다. 메뉴 닫기버튼 혹은 메뉴 이외의 곳을 클릭하면 메뉴를 닫습니다.*/}
+          <div className={isMenuClicked ? `${styles.menuLayer}` : `${styles.hideLayer}`} onClick={hamburgerButtonHandler}>
+            <ul className={`${styles.menu} ${isMenuClicked ? styles.clickedMenu : ""}`} onClick={hamburgerButtonHandler}>
+              <li><Link href={"/"}><a>홈</a></Link></li>
+              <li><Link href={"/StreamingList"}><a>방송목록</a></Link></li>
+              <li><Link href={"/ItemList"}><a>상품목록</a></Link></li>
+              <li><Link href={"/Mypage"}><a>마이페이지</a></Link></li>
+              <li><Link href={"/Signin"}><a>로그인</a></Link></li>
+              {isMenuClicked && <li><button type="button" className={styles.menuCloseButton} onClick={hamburgerButtonHandler}>메뉴 닫기</button></li>}
+            </ul>
+          </div>
         </nav>
       </header>
       {children}
