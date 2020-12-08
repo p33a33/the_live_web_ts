@@ -1,14 +1,24 @@
 .container {
     display: flex;
+    justify-content: center;
     align-items: center;
+    width: 100%;
 }
 
 ul {
-    padding : 0
+    padding : 0;
+    width : fit-content;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 80%;
 }
 
 li {
     list-style: none;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .buttonLine {
@@ -18,6 +28,6 @@ li {
 }
 
 .buttonImg {
-    width : 30px;
-    height: 30px;
+    width : 50px;
+    height: 50px;
 }
