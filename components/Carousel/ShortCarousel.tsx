@@ -56,7 +56,8 @@ const ShortCarousel = ({ carouselType, datas }: { carouselType: carouselType, da
     const swipeHandler = useSwipeable({ onSwipedLeft: nextSlide, onSwipedRight: prevSlide })
 
     return (
-        <>
+        <div className={styles.arrowContainer}>
+            <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevSlide} />
             <div className={styles.container} {...swipeHandler} >
                 <div className={styles.slideContainer} ref={slideRef}>
                     {carouselType === "streaming" ?
@@ -64,11 +65,8 @@ const ShortCarousel = ({ carouselType, datas }: { carouselType: carouselType, da
                         : datas.map((data, idx) => <ItemSlide data={data} key={idx} />)}
                 </div>
             </div>
-            <div className={styles.buttonLine}>
-                <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevSlide} />
-                <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextSlide} />
-            </div>
-        </>
+            <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextSlide} />
+        </div>
     )
 }
 

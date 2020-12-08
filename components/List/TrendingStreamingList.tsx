@@ -27,17 +27,17 @@ const TrendingStreamingList = ({ datas }: { datas: Array<slideData> }) => {
     const swipeHandler = useSwipeable({ onSwipedLeft: nextPage, onSwipedRight: prevPage })
 
     return (
-        <ul {...swipeHandler}>
-            {datas.map((data, index) => {
-                if (index < currentPage * 5 && index >= (currentPage - 1) * 5) {
-                    return <li><TrendingStreamingEntry data={data} /></li>
-                }
-            })}
-            <div className={styles.buttonLine}>
-                <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevPage} />
-                <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextPage} />
-            </div>
-        </ul>
+        <div className={styles.container}>
+            <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevPage} />
+            <ul {...swipeHandler}>
+                {datas.map((data, index) => {
+                    if (index < currentPage * 5 && index >= (currentPage - 1) * 5) {
+                        return <li><TrendingStreamingEntry data={data} /></li>
+                    }
+                })}
+            </ul>
+            <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextPage} />
+        </div>
     )
 }
 

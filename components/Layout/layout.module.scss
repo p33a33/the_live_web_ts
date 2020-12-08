@@ -19,10 +19,24 @@
     letter-spacing: 6px;
 }
 
+.hamburgerButton {
+    background :  none;
+    box-shadow: none;
+    border: none;
+    display: none;
+}
+
+.burgerLine {
+    height: 5px;
+    background-color: rgb(59,59,59);
+    width: 30px;
+    margin-bottom: 5px;
+}
+
 .menu {
     font-size: 2rem;
     font-weight: bold;
-    width: 35%;
+    width: 50%;
     display: flex;
     align-content: flex-end;
     align-items: center;
@@ -72,8 +86,28 @@ a:visited {
 @media all and (max-width:639px) {
     .header {
         width: 100%;
+        overflow: hidden;
     }
     .nav {
-        width : 100%
+        width : 100%;
+    }
+    .hamburgerButton {
+        display: block;
+    }
+    .menu {
+        position: absolute;
+        right : 0;
+        top : 8.5vh;
+        flex-direction: column;
+        transition: 0.4s ease-out;
+        z-index: 1;
+        background-color: whitesmoke;
+        width: 15rem;
+        li {
+            padding : 10px;
+        }
+    }
+    .clickedMenu {
+        opacity: 0;
     }
 }
