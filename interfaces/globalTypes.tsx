@@ -1,4 +1,5 @@
 export interface slideData {
+    id: string,
     imgSrc: string,
     linkTo: string,
     title: string,

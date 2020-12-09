@@ -4,9 +4,9 @@ import Layout from "../../components/Layout/Layout"
 const StreamingList = () => {
     return (
         <Layout title={"The Live | 현재 방송중인 목록"}>
-            <div>
-                <h1>streaming list</h1>
-            </div>
+            <section>
+                // Random
+            </section>
         </Layout>
     )
 }
