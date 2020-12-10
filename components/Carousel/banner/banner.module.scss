@@ -1,6 +1,5 @@
 .container{
-    width : 100%;
-    height: 100%;
+    width : 1280px;
     overflow: hidden;
     display: flex;
     flex-direction: column;
@@ -31,11 +30,14 @@
 }
 
 .buttonImg {
-    width : 30px;
-    height: 30px;
+    width : 6rem;
+    height: 6rem;
 }
 
 @media all and (min-width:640px) and (max-width:1279px) {
+    .container{
+        width: 100%;
+    }
     .buttonLine {
         width: 640px;
     }
@@ -43,6 +45,9 @@
 
 /* 모바일 세로 (해상도 639~)*/
 @media all and (max-width:639px) {
+    .container{
+        width: 100%;
+    }
     .buttonLine {
         width: 320px;
     }

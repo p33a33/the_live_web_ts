@@ -20,9 +20,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
     setIsMenuClicked(false)
   }
 
-
   useEffect(() => {
-    console.log(children)
     menuOffHandler()
   }, [children]) // 햄버거 메뉴 렌더 후 페이지 이동시 isMenuClicke 상태가 false로 전환됩니다.
 

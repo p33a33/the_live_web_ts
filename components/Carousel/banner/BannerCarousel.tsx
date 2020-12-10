@@ -4,6 +4,7 @@ import styles from './banner.module.scss'
 import { slideData } from "../../../interfaces/globalTypes"
 import { useSwipeable } from 'react-swipeable'
 
+
 const BannerCarousel = ({ datas }: { datas: Array<slideData> }) => {
 
     let TOTAL_SLIDE: number = datas.length
@@ -42,7 +43,7 @@ const BannerCarousel = ({ datas }: { datas: Array<slideData> }) => {
                 </div>
             </div>
             <div className={styles.buttonLine}>
-                <img className={styles.buttonImg} src={"./buttons/prevArrow.png"} alt={"prev"} onClick={prevSlide} />
+                <img className={styles.buttonImg} src={"/buttons/prevArrow.png"} alt={"prev"} onClick={prevSlide} />
                 <span>{currentSlide + 1}/{TOTAL_SLIDE}</span>
                 <img className={styles.buttonImg} src={"./buttons/nextArrow.png"} alt={"next"} onClick={nextSlide} />
             </div>
