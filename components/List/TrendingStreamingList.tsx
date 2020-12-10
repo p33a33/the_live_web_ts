@@ -32,7 +32,7 @@ const TrendingStreamingList = ({ datas }: { datas: Array<slideData> }) => {
             <ul {...swipeHandler}>
                 {datas.map((data, index) => {
                     if (index < currentPage * 5 && index >= (currentPage - 1) * 5) {
-                        return <li><TrendingStreamingEntry data={data} /></li>
+                        return <li key={index}><TrendingStreamingEntry data={data} /></li>
                     }
                 })}
             </ul>
