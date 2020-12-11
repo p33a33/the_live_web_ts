@@ -6,6 +6,12 @@
     width: 100%;
 }
 
+.entry:hover {
+    cursor: pointer;
+    background-color: rgb(240, 240, 240);
+    color: rgb(0, 0, 0);
+}
+
 .entryImg {
     width: 45%;
     margin-right: 20px;

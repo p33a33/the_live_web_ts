@@ -10,8 +10,8 @@ const StreamingSlide = ({ data }: { data: slideData }) => {
     }
 
     return (
-        <div>
-            <img className={styles.image} src={data.imgSrc} onClick={() => Router.push(data.linkTo)} />
+        <div className={styles.slideContainer} onClick={() => Router.push(data.linkTo)} >
+            <img className={styles.image} src={data.imgSrc} />
             <dl>
                 <dt className={styles.title} style={{ textAlign: "center" }}>{data.title}</dt>
                 <dd className={styles.viewer} style={{ textAlign: "center" }}>
