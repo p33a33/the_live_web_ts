@@ -15,10 +15,17 @@
 }
 
 .logo {
+    background: none;
+    border: none;
     font-size: 4rem;
     font-weight: bold;
     letter-spacing: 6px;
     vertical-align: middle;
+    outline: none;
+}
+
+.logo:hover {
+    cursor: pointer;
 }
 
 .hamburgerButton {
@@ -29,6 +36,10 @@
     outline: none;
     vertical-align: middle;
     padding : 0;
+}
+
+.hamburgerButton:hover {
+    cursor: pointer;
 }
 
 .burgerLine {
@@ -46,32 +57,36 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    padding : 0;
     .menuCloseButton {
         display: none;
     }
 
     li {
+        text-align: center;
+        width: 100%;
+        list-style: none;
         padding : 1rem;
+        button {
+            background: none;
+            outline: none;
+            border : none;
+            font-size: 2.3rem;
+            font-weight: bold;
+        }
     }
 
     li:hover {
         background-color: rgb(58, 58, 58);
-        color : rgb(200, 200, 200);
-        transition : 0.5s;
+        transition : 0.7s;
         cursor: pointer;
+        button {
+            color : rgb(200, 200, 200);
+        }
+        button:hover {
+            cursor: pointer;
+        }
     }
-}
-
-a {
-    text-decoration: none;
-}
-
-a:link {
-    color : rgb(58, 58, 58)
-}
-
-a:visited {
-    color : rgb(58, 58, 58)
 }
 
 .footer {

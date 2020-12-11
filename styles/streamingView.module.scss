@@ -1,4 +1,5 @@
 @mixin chatArea($width, $opacity, $marginLeft) {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
     width : $width;
@@ -9,28 +10,56 @@
     margin-left: $marginLeft
 }
 
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
 main {
     display: flex;
+    justify-content: center;
     padding-left : 2rem;
     padding-right : 2rem;
 
     .streamPlayerSection {
-        width : 100%;
+        margin: 0;
+        max-width: 1280px;
         height: 100%;
 
-        .videoPlayer {
-            position : relative;
-        }
-
         .streamTitle {
+            font-size: 4rem;
             display: flex;
             justify-content: space-between;
         }
     }
+}
 
     .buttons {
         display: flex;
         justify-content: space-between;
+        .itemOption {
+            width: 60%;
+            height: 10vw;
+            display: flex;
+
+            button {
+                padding : 0 1rem;
+            }
+        }
+        button {
+            height: 30%;
+            background: none;
+            font-size: 2rem;
+            font-weight: bold;
+            outline: none;
+            border: none;
+        }
+        button:hover {
+            background-color: rgb(22, 22, 22);
+            color: rgb(235, 235, 235);
+            transition : 0.2s;
+            cursor: pointer;
+        }
     }
 
     .chatAreaShow {
@@ -40,79 +69,145 @@ main {
 
     .chatAreaHide {
         @include chatArea(0, 0, 0);
-        height : 100%;
     }
 
     .chatRenderArea {
         flex : 15;
-        overflow-y: scroll;
+        margin: 0;
     }
-
+    
     .chatLog {
-        max-height : 100%;
+        display: inline-block;
+        overflow-y: scroll;
     }
 
     .chatInput {
         flex : 1;
         display: flex;
-
         input {
-            flex : 2;
+            display: none;
+            flex : 5;
             font-size: 2rem;
             margin-right: 0.5rem;
         }
-
         button {
+            display: none;
             flex : 1;
             font-size: 1.5rem;
             background: none;
             // border: none;
         }
-
         button:hover {
             background-color: lightcoral;
         }
     }
-}
 
-@media all and (max-width : 1279px) and (min-width : 640px) {
-     .chatInput {
+    .chatInput.active {
         input {
-            width: 15rem;
-            margin-right: 5px;
+            display: block;
         }
         button {
-            width: 5rem;
+            display: block;
         }
     }
+
+.linkedItemSection {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    padding : 0 2rem;
+    margin-top: 3rem;
+    width: fit-content;
+    width: 100%;
+    h2 {
+        width: 100%;
+        text-align: left;
+        font-size: 4rem;
+    }
+    .linkedItemEntry {
+        margin: 2rem 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        .linkedItemImage {
+            width: 40rem;
+            height: 40rem;
+            margin-right: 3rem;
+            background-color: bisque;
+        }
+        .linkedItemInfo {
+            dl {
+                padding : none;
+            }
+            dt {
+                font-size: 3rem;
+                font-weight: bold;
+            }
+            dd {
+                font-size: 2rem;
+                font-weight: lighter;
+                letter-spacing: 2px;
+                button {
+                    margin : 3rem 0;
+                    padding : 0;
+                    background: none;
+                    border: none;
+                    font-size: 2rem;
+                    font-weight: bold;
+                }
+                button:hover {
+                    cursor: pointer;
+                    background-color: rgb(22, 22, 22);
+                    color: rgb(235, 235, 235);
+                }
+            }
+        }
+    }
+}
+
+
+
+
+@media all and (max-width : 1279px) and (min-width : 640px) {
+
 }
 
 @media all and (max-width : 639px) {
     main {
+        align-items: center;
         flex-direction : column;
-        flex : 1;
+
+        .buttons {
+            .itemOption {
+                width: 70%;
+            }
+        }
 
         .chatAreaShow {
-            @include chatArea(100%, 100%, 0)
-            height : 50vh
+            @include chatArea(100%, 100%, 0);
+            height : 50vh;
         }
         
         .chatAreaHide {
-            @include chatArea(100%, 100%, 0)
-            height : 50vh
+            @include chatArea(100%, 100%, 0);
+            height : 50vh;
+        }
+
+        .chatInput {
+            vertical-align : middle;
+            input {
+                display: block;
+                flex : 8;
+                height: 5rem;
+                margin-right: 5px;
+            }
+            button {
+                display: block;
+                flex : 1;
+                height: 5rem;
+                width: 5rem;
+            }
         }
     }
 
-         .chatInput {
-             vertical-align : middle;
-        input {
-            width: 15rem;
-            height: 5rem;
-            margin-right: 5px;
-        }
-        button {
-            height: 5rem;
-            width: 5rem;
-        }
-    }
 }

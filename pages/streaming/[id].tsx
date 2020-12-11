@@ -35,63 +35,84 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
 
     return (
         <Layout title={`The Live | ${pageData.title}`}>
+            <div className={styles.pageContainer}>
+                {/*video player, chat */}
+                <main>
+                    <section className={styles.streamPlayerSection}>
+                        <div>
+                            <video className={styles.videoPalyer}
+                                controls
+                                width="100%"
+                                src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
+                                autoPlay={false} />
 
-            {/*video player, chat */}
-            <main>
-                <section className={styles.streamPlayerSection}>
-                    <div>
-                        <video className={styles.videoPalyer}
-                            controls
-                            width="100%"
-                            src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
-                            autoPlay={false} />
-
-                        {/* buttons, viewerCounter, streaming description*/}
-                    </div>
-                    <div>
-                        {/* streaming title, viewerCount */}
-                        <h1 className={styles.streamTitle}> {pageData.title} <small>{pageData.viewerCount}명 시청중</small> </h1>
-
-                        {/* buttons*/}
-                        <div className={styles.buttons}>
-                            <div>
-                                <button type="button">카트에 담기</button>
-                                <button type="button">지금 구매하기</button>
-                                <button type="button">찜하기</button>
-                            </div>
-                            <span>
-                                <button type="button" onClick={() => setIsChattingOn(!isChattingOn)}>
-                                    {isChattingOn ? "채팅 닫기" : "채팅 열기"}
-                                </button>
-                            </span>
+                            {/* buttons, viewerCounter, streaming description*/}
                         </div>
-                    </div>
-                </section>
-                {/*chat area */}
-                <aside className={isChattingOn ? styles.chatAreaShow : styles.chatAreaHide}>
+                        <div>
+                            {/* streaming title, viewerCount */}
+                            <h1 className={styles.streamTitle}> {pageData.title} <small>{pageData.viewerCount}명 시청중</small> </h1>
 
-                    {/* chat render */}
-                    <section className={styles.chatRenderArea}>
-                        <div className={styles.chatLog}>
-                        {chats.map(chat => <div>{chat.id} : {chat.chat}</div>)}
+                            {/* buttons*/}
+                            <div className={styles.buttons}>
+                                <div className={styles.itemOption}>
+                                    <button type="button">카트에 담기</button>
+                                    <button type="button">지금 구매하기</button>
+                                    <button type="button">찜하기</button>
+                                </div>
+                                <span>
+                                    <button type="button" onClick={() => setIsChattingOn(!isChattingOn)}>
+                                        {isChattingOn ? "채팅 닫기" : "채팅 열기"}
+                                    </button>
+                                </span>
+                            </div>
                         </div>
                     </section>
-                    {/* chat input */}
-                    <div className={styles.chatInput}>
-                        <input
-                            id="chatInput"
-                            placeholder="메시지 보내기"
-                            onChange={(e) => watchInput(e.target.value)}
-                            autoComplete="off"
-                            onKeyPress={(e) => pressEnter(e)} />
-                        <button type="button" onClick={sendChat}>send</button>
+                    {/*chat area */}
+                    <aside className={isChattingOn ? styles.chatAreaShow : styles.chatAreaHide}>
+
+                        {/* chat render */}
+                        <section className={styles.chatRenderArea}>
+                            <div className={styles.chatLog}>
+                                {chats.map(chat => <div>{chat.id} : {chat.chat}</div>)}
+                            </div>
+                        </section>
+                        {/* chat input */}
+                        <div className={isChattingOn ? `${styles.chatInput} ${styles.active}` : `${styles.chatInput}`}>
+                            <input
+                                id="chatInput"
+                                placeholder="메시지 보내기"
+                                onChange={(e) => watchInput(e.target.value)}
+                                autoComplete="off"
+                                onKeyPress={(e) => pressEnter(e)} />
+                            <button type="button" onClick={sendChat}>send</button>
+                        </div>
+                    </aside>
+                </main>
+                <hr />
+                {/* Linked item */}
+                <section className={styles.linkedItemSection}>
+                    <h2>현재 방송중인 상품</h2>
+
+                    {/* item picture */}
+                    <div className={styles.linkedItemEntry}>
+                        <div className={styles.linkedItemImage} >
+                        </div>
+
+                        {/* item info*/}
+                        <div className={styles.linkedItemInfo}>
+                            <dl>
+                                <dt>
+                                    item title
+                        </dt>
+                                <dd>
+                                    item description
+                                <div><button type="button">상세페이지에서 만나보기</button></div>
+                                </dd>
+                            </dl>
+                        </div>
                     </div>
-                </aside>
-
-                <section> {/* Linked item */}
-
                 </section>
-            </main>
+            </div>
         </Layout>
     )
 }
