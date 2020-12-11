@@ -1,0 +1,118 @@
+@mixin chatArea($width, $opacity, $marginLeft) {
+    display: flex;
+    flex-direction: column;
+    width : $width;
+    background-color: rgba(184, 184, 184, 0.2);
+    transition : 0.5s;
+    z-index: 0;
+    opacity: $opacity;
+    margin-left: $marginLeft
+}
+
+main {
+    display: flex;
+    padding-left : 2rem;
+    padding-right : 2rem;
+
+    .streamPlayerSection {
+        width : 100%;
+        height: 100%;
+
+        .videoPlayer {
+            position : relative;
+        }
+
+        .streamTitle {
+            display: flex;
+            justify-content: space-between;
+        }
+    }
+
+    .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .chatAreaShow {
+        max-height : 100%;
+        @include chatArea(30%, 100%, 1.5rem);
+    }
+
+    .chatAreaHide {
+        @include chatArea(0, 0, 0);
+        height : 100%;
+    }
+
+    .chatRenderArea {
+        flex : 15;
+        overflow-y: scroll;
+    }
+
+    .chatLog {
+        max-height : 100%;
+    }
+
+    .chatInput {
+        flex : 1;
+        display: flex;
+
+        input {
+            flex : 2;
+            font-size: 2rem;
+            margin-right: 0.5rem;
+        }
+
+        button {
+            flex : 1;
+            font-size: 1.5rem;
+            background: none;
+            // border: none;
+        }
+
+        button:hover {
+            background-color: lightcoral;
+        }
+    }
+}
+
+@media all and (max-width : 1279px) and (min-width : 640px) {
+     .chatInput {
+        input {
+            width: 15rem;
+            margin-right: 5px;
+        }
+        button {
+            width: 5rem;
+        }
+    }
+}
+
+@media all and (max-width : 639px) {
+    main {
+        flex-direction : column;
+        flex : 1;
+
+        .chatAreaShow {
+            @include chatArea(100%, 100%, 0)
+            height : 50vh
+        }
+        
+        .chatAreaHide {
+            @include chatArea(100%, 100%, 0)
+            height : 50vh
+        }
+    }
+
+         .chatInput {
+             vertical-align : middle;
+        input {
+            width: 15rem;
+            height: 5rem;
+            margin-right: 5px;
+        }
+        button {
+            height: 5rem;
+            width: 5rem;
+        }
+    }
+}

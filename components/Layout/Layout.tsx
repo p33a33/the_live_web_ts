@@ -1,4 +1,5 @@
 import React, { ReactNode, useEffect, useState } from 'react'
+import Router from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import styles from './layout.module.scss'
@@ -18,6 +19,10 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
 
   const menuOffHandler = () => {
     setIsMenuClicked(false)
+  }
+
+  const routeTo = (link: string) => {
+    Router.push(`/${link}`)
   }
 
   useEffect(() => {
@@ -42,12 +47,12 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
 
           {/* 태블릿 이상의 환경에서는 nav에 메뉴가 표시됩니다. 메뉴 닫기버튼 혹은 메뉴 이외의 곳을 클릭하면 메뉴를 닫습니다.*/}
           <div className={isMenuClicked ? `${styles.menuLayer}` : `${styles.hideLayer}`} onClick={menuOffHandler} />
-          <ul className={`${styles.menu} ${isMenuClicked ? styles.clickedMenu : ""}`} onClick={menuOnHandler}>
-            <li><Link href={"/"}><a>홈</a></Link></li>
-            <li><Link href={"/StreamingList"}><a>방송목록</a></Link></li>
-            <li><Link href={"/ItemList"}><a>상품목록</a></Link></li>
-            <li><Link href={"/Mypage"}><a>마이페이지</a></Link></li>
-            <li><Link href={"/Signin"}><a>로그인</a></Link></li>
+          <ul className={`${styles.menu} ${isMenuClicked ? styles.clickedMenu : ""}`}>
+            <li onClick={() => Router.push("/")}>홈</li>
+            <li onClick={() => Router.push("/StreamingList")}>방송목록</li>
+            <li onClick={() => Router.push("/ItemList")}>상품목록</li>
+            <li onClick={() => Router.push("/Mypage")}>마이페이지</li>
+            <li onClick={() => Router.push("/Signin")}>로그인</li>
             {isMenuClicked && <li>
               <button type="button" className={styles.menuCloseButton} onClick={menuOffHandler}>메뉴 닫기</button>
             </li>}
