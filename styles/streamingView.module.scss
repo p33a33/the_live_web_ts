@@ -3,11 +3,10 @@
     display: flex;
     flex-direction: column;
     width : $width;
-    background-color: rgba(184, 184, 184, 0.2);
     transition : 0.5s;
     z-index: 0;
     opacity: $opacity;
-    margin-left: $marginLeft
+    margin-left: $marginLeft;
 }
 
 .pageContainer {
@@ -15,15 +14,17 @@
     flex-direction: column;
     align-items: center;
 }
+
 main {
     display: flex;
     justify-content: center;
     padding-left : 2rem;
     padding-right : 2rem;
+    box-sizing: border-box;
+    max-width: 1280px;
 
     .streamPlayerSection {
         margin: 0;
-        max-width: 1280px;
         height: 100%;
 
         .streamTitle {
@@ -39,7 +40,7 @@ main {
         justify-content: space-between;
         .itemOption {
             width: 60%;
-            height: 10vw;
+            height: 10rem;
             display: flex;
 
             button {
@@ -63,8 +64,7 @@ main {
     }
 
     .chatAreaShow {
-        max-height : 100%;
-        @include chatArea(30%, 100%, 1.5rem);
+        @include chatArea(25%, 100%, 1.5rem);
     }
 
     .chatAreaHide {
@@ -72,33 +72,41 @@ main {
     }
 
     .chatRenderArea {
-        flex : 15;
-        margin: 0;
-    }
-    
-    .chatLog {
-        display: inline-block;
         overflow-y: scroll;
+        box-sizing: border-box;
+        // min-height: 607px;
+        height: 710px;
+        // max-height: 710px;
+        padding : 10px;
+        div {
+            font-size: 2rem;
+        }
+        margin-bottom: 0;
     }
 
     .chatInput {
-        flex : 1;
+        height: 5rem;
         display: flex;
         input {
             display: none;
             flex : 5;
             font-size: 2rem;
             margin-right: 0.5rem;
+            border: none;
+            border-bottom: 2px solid black;
+            outline: none;
         }
         button {
             display: none;
             flex : 1;
             font-size: 1.5rem;
             background: none;
-            // border: none;
+            border: none;
+            outline: none;
         }
         button:hover {
-            background-color: lightcoral;
+            background-color: rgb(22, 22, 22);
+            color : rgb(235, 235, 235)
         }
     }
 
@@ -116,9 +124,10 @@ main {
     display: flex;
     flex-direction: column;
     padding : 0 2rem;
+    margin-bottom: 0;
     margin-top: 3rem;
-    width: fit-content;
     width: 100%;
+    max-width: 1280px;
     h2 {
         width: 100%;
         text-align: left;
@@ -130,8 +139,8 @@ main {
         justify-content: center;
         align-items: center;
         .linkedItemImage {
-            width: 40rem;
-            height: 40rem;
+            width: 30rem;
+            height: 30rem;
             margin-right: 3rem;
             background-color: bisque;
         }
@@ -169,7 +178,28 @@ main {
 
 
 @media all and (max-width : 1279px) and (min-width : 640px) {
+    main {
+        .chatAreaShow {
+            @include chatArea(30%, 100%, 10px);
+            height: fit-content;
+        }
+        
+        .chatAreaHide {
+            @include chatArea(0, 0, 0);
+            height: 0;
+        }
 
+        .chatRenderArea {
+            overflow-y: scroll;
+            min-height: 260px;
+            height: 48vw;
+            max-width: 260px;
+            padding : 10px;
+            div {
+                font-size: 2rem;
+            }
+        }
+    }
 }
 
 @media all and (max-width : 639px) {
@@ -185,14 +215,24 @@ main {
 
         .chatAreaShow {
             @include chatArea(100%, 100%, 0);
-            height : 50vh;
         }
         
         .chatAreaHide {
-            @include chatArea(100%, 100%, 0);
-            height : 50vh;
+            @include chatArea(0, 0, 0);
+            height: 0;
         }
 
+        .chatRenderArea {
+            overflow-y: scroll;
+            min-height: 30vw;
+            height: 30vw;
+            max-height: 30vw;
+            padding : 10px;
+            div {
+                font-size: 2rem;
+            }
+        }
+        
         .chatInput {
             vertical-align : middle;
             input {
@@ -209,5 +249,4 @@ main {
             }
         }
     }
-
 }

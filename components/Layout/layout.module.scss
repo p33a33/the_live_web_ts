@@ -50,8 +50,6 @@
 }
 
 .menu {
-    font-size: 2rem;
-    font-weight: bold;
     width: 60%;
     display: flex;
     flex-direction: row;
@@ -64,14 +62,15 @@
 
     li {
         text-align: center;
-        width: 100%;
+        width: fit-content;
         list-style: none;
         padding : 1rem;
         button {
+            width: 15rem;
             background: none;
             outline: none;
             border : none;
-            font-size: 2.3rem;
+            font-size: 2.5rem;
             font-weight: bold;
         }
     }
@@ -107,7 +106,7 @@
     }
 }
 
-@mixin hamburger($menuWidth, $menuHeight) {
+@mixin hamburger($menuWidth, $menuHeight, $liPadding) {
     .hamburgerButton {
         display: block;
     }
@@ -127,8 +126,13 @@
         height: $menuHeight;
         justify-content: start;
         opacity: 0;
+        position: fixed;
         li {
-            padding : 4rem 0;
+            width: 100%;
+            padding : $liPadding 0;
+            button {
+                width: 100%;
+            }
         }
     }
     .clickedMenu {
@@ -137,11 +141,7 @@
         z-index: 2;
     }
     .menuCloseButton {
-        font-size: 3rem;
-        font-weight: bold;
-        background : none;
-        padding : 10px 20px;
-        border : solid 1px;
+        margin-top: 80%;
     }
     .menuLayer {
         position: absolute;
@@ -156,6 +156,79 @@
     }
 }
 
+.modalWrap {
+    left : 0;
+    right: 0;
+    top : 0;
+    bottom : 0;
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 3;
+    justify-content: center;
+    align-items: center;
+}
+
+.signinModal {
+    box-sizing: border-box;
+    background-color: aliceblue;
+    width: 60rem;
+    height: 60rem;
+    padding : 0 8rem;
+    z-index: 4;
+    border-radius: 2%;
+}
+
+.signinForm {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .inputArea {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+    label {
+        align-self: flex-start;
+        font-size: 2rem;
+        font-weight: bold;
+        margin: 3rem 0 2rem 0;
+    }
+    input {
+        font-size: 1.5rem;
+        outline: none;
+        width: 30rem;
+        height: 3rem;
+        border: none;
+        border-bottom: 2px solid black;
+        background: none;
+    }
+}
+
+    .buttonArea {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-evenly;
+        button {
+            border: none;
+            width : 30rem;
+            background: none;
+            font-size: 2rem;
+            font-weight: bold;
+            padding : 1rem 0;
+        }
+        button:hover {
+            background-color: rgb(22, 22, 22);
+            color: rgb(231, 231, 231);
+            cursor: pointer;
+        }
+    }
+}
+
 
 @media all and (min-width:640px) and (max-width:1279px) {
     .header {
@@ -165,7 +238,7 @@
         width : 100%
     }
 
-    @include hamburger(20vw, 100%)
+    @include hamburger(20vw, 100%, 3rem)
 }
 
 /* 모바일 세로 (해상도 639~)*/
@@ -177,17 +250,9 @@
     .nav {
         width : 100%;
     }
-    @include hamburger(50vw, 100vh)
-}
-
-@keyframes slide-in {
-    from {
-        opacity: 0%;
-        left : 100%
+    .signinModal {
+        width : 40rem;
+        height : 40rem;
     }
-
-    to {
-        opacity: 100%;
-        right : 0%
-    }
+    @include hamburger(30vw, 100vh, 2rem)
 }
