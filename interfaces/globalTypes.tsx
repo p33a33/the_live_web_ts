@@ -1,7 +1,7 @@
 export interface slideData {
-    id?: string,
+    id: string,
     imgSrc?: string,
-    linkTo?: string,
+    linkTo: string,
     title?: string,
     viewerCount: number,
     originalPrice: number,

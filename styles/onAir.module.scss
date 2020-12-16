@@ -1,0 +1,77 @@
+.container {
+    border: 2px solid pink;
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+}
+
+.mainContent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    * {
+        border: 1px solid black;
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@mixin infoForm {
+    height: 100%;
+    overflow: hidden;
+    transition: 0.5s;
+    border : none;
+}
+
+.streamInfoFormDiv.hide{
+    @include infoForm;
+    opacity: 0%;
+    width: 0;
+}
+
+.streamInfoFormDiv.active {
+    @include infoForm;
+    flex: 1;
+}
+
+.infoForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
+.videoArea {
+    width: 100%;
+    border: 2px solid green;
+    transition: 0.5s;
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.myVideoDiv {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex: 4;
+}
+
+.buttonLine {
+    display: flex;
+    justify-content: flex-end;
+}
+
+@mixin chat{
+    transition : 0.5s;
+}
+
+.chatArea.active {
+    @include chat;
+    flex: 1;
+}
+
+.chatArea.hide {
+    @include chat;
+    width: 0;
+}

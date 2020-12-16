@@ -50,11 +50,11 @@
 }
 
 .menu {
-    width: 60%;
+    width: 70%;
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: space-between;
+    justify-content: flex-end;
     padding : 0;
     .menuCloseButton {
         display: none;
@@ -64,7 +64,7 @@
         text-align: center;
         width: fit-content;
         list-style: none;
-        padding : 1rem;
+        padding : 0.5rem;
         button {
             width: 15rem;
             background: none;
@@ -200,7 +200,7 @@
     input {
         font-size: 1.5rem;
         outline: none;
-        width: 30rem;
+        width: 40rem;
         height: 3rem;
         border: none;
         border-bottom: 2px solid black;
@@ -219,7 +219,7 @@
             background: none;
             font-size: 2rem;
             font-weight: bold;
-            padding : 1rem 0;
+            padding : 2rem 0;
         }
         button:hover {
             background-color: rgb(22, 22, 22);

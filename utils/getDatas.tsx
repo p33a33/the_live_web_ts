@@ -15,5 +15,6 @@ export default function getDatas(carouselType: carouselType) {
             currnetPrice: Number((Number(Math.random().toFixed(3)) * 1000000).toFixed(0))
         }
     })
+
     return dataFiles;
 }
