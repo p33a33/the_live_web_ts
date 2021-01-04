@@ -11,12 +11,12 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
     const [chats, setChats] = useState<Array<{ id: string, chat: string }>>([])
 
     const sendChat = () => {
-        let inputValue: string = document.getElementById("chatInput").value;
+        let inputValue = document.getElementById("chatInput") as HTMLInputElement
         if (inputValue) {
             let temp = chats
-            temp.push({ id: "tester", chat: inputValue })
+            temp.push({ id: "tester", chat: inputValue.value })
             setChats([...temp]);
-            document.getElementById("chatInput").value = ""
+            inputValue.value = ""
         } else {
             alert("메시지를 입력해주세요")
         }
@@ -32,10 +32,10 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
         <Layout title={`The Live | ${pageData.title}`}>
             <div className={styles.pageContainer}>
                 {/*video player, chat */}
-                <main>
+                <main className={styles.streamArea}>
                     <section className={styles.streamPlayerSection}>
                         <div>
-                            <video className={styles.videoPalyer}
+                            <video className={styles.videoPlayer}
                                 controls
                                 width="100%"
                                 src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
@@ -119,21 +119,27 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
     )
 }
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const pageData = await fetch(`http://localhost:3000/api/getDatas?id=${params.id}`)
-        .then(res => res.json())
+export const getStaticProps: GetStaticProps = async (context) => {
 
+    if (context.params) {
+        const pageData = await fetch(`http://localhost:3000/api/getDatas?id=${context.params.id}`)
+            .then(res => res.json())
+
+        return {
+            props: {
+                pageData
+            }
+        }
+    }
     return {
         props: {
-            pageData
         }
     }
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
     const datas: Array<slideData> = getDatas("streaming");
-
-    return {
+    let paths = {
         paths: datas.map(data => {
             return {
                 params: {
@@ -143,6 +149,7 @@ export const getStaticPaths: GetStaticPaths = () => {
         }),
         fallback: false
     }
+    return paths;
 }
 
 export default StreamingView;

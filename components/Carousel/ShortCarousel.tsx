@@ -30,7 +30,7 @@ const ShortCarousel = ({ carouselType, datas }: { carouselType: carouselType, da
     })
 
 
-    let slideRef = useRef(null);
+    let slideRef = useRef<HTMLDivElement>(null);
 
     let nextSlide = () => {
         if (currentSlide >= TOTAL_SLIDE - 1) {
@@ -49,8 +49,10 @@ const ShortCarousel = ({ carouselType, datas }: { carouselType: carouselType, da
     };
 
     useEffect(() => {
-        slideRef.current.style.transition = "all 0.5s ease-in-out";
-        slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+        if (slideRef.current !== null) {
+            slideRef.current.style.transition = "all 0.5s ease-in-out";
+            slideRef.current.style.transform = `translateX(-${currentSlide}00%)`;
+        }
     }, [currentSlide])
 
     const swipeHandler = useSwipeable({ onSwipedLeft: nextSlide, onSwipedRight: prevSlide })

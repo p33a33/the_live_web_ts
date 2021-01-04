@@ -16,7 +16,8 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
 
   const menus: Array<{ title: string, url: string }> = [
     { title: "홈", url: "/" },
-    { title: "방송목록", url: "/StreamingList" },
+    { title: "방송목록", url: "/streaming/StreamingList" },
+    { title: "방송하기", url: "/streaming/onAir" },
     { title: "상품목록", url: "/ItemList" },
     { title: "마이페이지", url: "/Mypage" },
   ]
@@ -56,7 +57,7 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
           {/* 데스크탑 환경(1280px 이상)에서는 nav에 메뉴가 표시됩니다. 메뉴 닫기버튼 혹은 메뉴 이외의 곳을 클릭하면 메뉴를 닫습니다.*/}
           <div className={isMenuClicked ? `${styles.menuLayer}` : `${styles.hideLayer}`} onClick={menuOffHandler} />
           <ul className={`${styles.menu} ${isMenuClicked ? styles.clickedMenu : ""}`}>
-            {menus.map(menu => <li>
+            {menus.map((menu, idx) => <li key={idx}>
               <button type="button" onClick={() => Router.push(menu.url)}>{menu.title}</button>
             </li>)}
             <li><button type="button" onClick={modalHandler}>로그인</button></li>
@@ -81,13 +82,13 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
             <div className={styles.buttonArea}>
               <button type="submit">로그인</button>
               <button type="button">아직 회원이 아니신가요?</button>
-              <button type="button" onClick={modalHandler}>뒤로가기</button>
+              <button type="button" onClick={modalHandler}>닫기❌️</button>
             </div>
           </form>
         </div>
 
       </div>
-      { children}
+      {children}
       <footer className={styles.footer}>
         <div>개발자 : 조성민</div>
         <div>문의사항 : p33a33@gmail.com</div>
@@ -101,4 +102,4 @@ const Layout = ({ children, title = 'This is the default title' }: Props) => {
   )
 }
 
-export default Layout
+export default Layout;

@@ -3,7 +3,7 @@ import Layout from '../../components/Layout/Layout'
 const Mypage = () => {
     return (
         <Layout title={"The Live | 마이페이지"}>
-            <div>Mypage</div>
+            <h1>준비중입니다.</h1>
         </Layout>
     )
 }

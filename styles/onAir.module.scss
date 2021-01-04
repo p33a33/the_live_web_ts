@@ -1,0 +1,135 @@
+.container {
+    height: fit-content;
+    display: flex;
+    justify-content: center;
+}
+
+.mainContent {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    * {
+        box-sizing: border-box;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+@mixin configForm {
+    max-height: 100%;
+    overflow: hidden;
+    transition: 0.5s;
+    border : none;
+}
+
+.streamConfigFormDiv.hide{
+    @include configForm;
+    opacity: 0%;
+    width: 0;
+    textarea {
+        display: none;
+    }
+    label {
+        display: none;
+    }
+}
+
+.streamConfigFormDiv.active {
+    @include configForm;
+    flex: 1;
+}
+
+@mixin buttons($padding) {
+    button {
+        background: none;
+        border : none;
+        font-size: 2rem;
+        font-weight: 500;
+        padding: $padding $padding;
+        transition: 0.3s;
+        outline: none;
+    }
+    button:hover {
+        cursor: pointer;
+        background-color: black;
+        color: white;
+    }
+}
+
+.configForm {
+    padding : 0 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    * {
+        outline: none;
+    }
+    label {
+        font-size: 3rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+    textarea {
+        font-size: 2rem;
+        height: 4rem;
+        resize: none;
+        margin-bottom: 4rem;
+        padding : 0.5rem;
+        overflow: hidden;
+    }
+    #streamDescription {
+        height: 20rem;
+    }
+    #streamTitle {
+        height: fit-content;
+    }
+    select {
+        height: 4rem;
+    }
+    @include buttons(2rem)
+}
+
+.videoArea {
+    width: 100%;
+    transition: 0.5s;
+    flex: 5;
+    display: flex;
+    flex-direction: column;
+}
+
+.videoPannel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.buttonLine {
+    display: flex;
+    justify-content: flex-end;
+    @include buttons (1rem);
+    button {
+        margin : 0 1rem
+    };
+}
+
+.boradcastDescription {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+@mixin chat{
+    transition : 0.5s;
+}
+
+.chatArea.active {
+    @include chat;
+    flex: 1;
+}
+
+.chatArea.hide {
+    @include chat;
+    width: 0;
+}

@@ -1,8 +1,6 @@
 import fs from 'fs'
-import { url } from 'inspector'
 import { NextApiRequest, NextApiResponse } from 'next'
 import path from 'path'
-import { slideData } from '../../interfaces/globalTypes'
 
 export default async function getDatas(req: NextApiRequest, res: NextApiResponse) {
     const urlQuery = req.query.id
