@@ -32,10 +32,10 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
         <Layout title={`The Live | ${pageData.title}`}>
             <div className={styles.pageContainer}>
                 {/*video player, chat */}
-                <main>
+                <main className={styles.streamArea}>
                     <section className={styles.streamPlayerSection}>
                         <div>
-                            <video className={styles.videoPalyer}
+                            <video className={styles.videoPlayer}
                                 controls
                                 width="100%"
                                 src="http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4"
