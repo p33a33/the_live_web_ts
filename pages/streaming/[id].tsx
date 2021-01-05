@@ -1,6 +1,5 @@
 import { KeyboardEvent, useState } from 'react'
 import { GetStaticPaths, GetStaticProps } from "next";
-import Layout from "../../components/Layout/Layout"
 import { slideData } from "../../interfaces/globalTypes";
 import getDatas from "../../utils/getDatas";
 import styles from '../../styles/streamingView.module.scss'
@@ -29,7 +28,7 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
     }
 
     return (
-        <Layout title={`The Live | ${pageData.title}`}>
+        <>
             <div className={styles.pageContainer}>
                 {/*video player, chat */}
                 <main className={styles.streamArea}>
@@ -115,7 +114,7 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
                     </div>
                 </section>
             </div>
-        </Layout>
+        </>
     )
 }
 
