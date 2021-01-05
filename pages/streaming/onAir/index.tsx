@@ -7,9 +7,9 @@ const onAir = () => {
     let [configFormVisible, setConfigFormVisible] = useState(true)
     let [chatVisible, setChatVisible] = useState(true)
     let [onAir, setOnAir] = useState(false)
-    let [title, setTitle] = useState("guest님의 방송")
+    let [title, setTitle] = useState("")
     let [newTitle, setNewTitle] = useState("")
-    let [description, setDescription] = useState("guest님의 방송입니다")
+    let [description, setDescription] = useState("")
     let [newDescription, setNewDescription] = useState("")
 
     useEffect(
@@ -71,15 +71,15 @@ const onAir = () => {
                             <video id="video" className={styles.preview} />
                         </div>
                         <div className={styles.boradcastDescription}>
-                            <h1>{title}</h1>
-                            <div>{description}</div>
+                            <h1>{title || "방송 제목이 표시됩니다"}</h1>
+                            <div>{description || "방송 설명이 표시됩니다"}</div>
                         </div>
                         <hr />
                         <div className={styles.buttonLine}>
                             <button type="button" onClick={() => setConfigFormVisible(!configFormVisible)}>방송설정 열기</button>
                             <button type="button" onClick={() => setChatVisible(!chatVisible)}>채팅 열기</button>
-                            <button type="button" onClick={startStreaming}>방송 시작하기</button>
-                            <button type="button" onClick={() => setOnAir(false)}>방송 종료하기</button>
+                            <button type="button" onClick={() => setOnAir(false)} disabled={onAir ? true : false}>방송 종료하기</button>
+                            <button type="button" onClick={startStreaming} disabled={onAir ? false : true}>방송 시작하기</button>
                         </div>
                     </section>
                     <aside className={`${styles.chatArea} ${chatVisible ? styles.active : styles.hide}`}>

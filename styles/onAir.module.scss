@@ -118,18 +118,22 @@
     display: flex;
     flex-direction: column;
     align-items: flex-end;
-}
-
-@mixin chat{
-    transition : 0.5s;
+    padding-right: 3rem;
+    h1{
+        font-size: 3.5rem;
+        margin-bottom: 2rem;
+    }
+    div {
+        font-size: 2rem;
+    }
 }
 
 .chatArea.active {
-    @include chat;
+    transition : 0.5s;
     flex: 1;
 }
 
 .chatArea.hide {
-    @include chat;
+    transition : 0.5s;
     width: 0;
 }
