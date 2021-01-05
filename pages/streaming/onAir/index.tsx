@@ -43,7 +43,7 @@ const onAir = () => {
     }
 
     return (
-        <Layout title={"The Live | 방송 시작하기"}>
+        <>
             <div className={styles.container}>
                 <main className={styles.mainContent}>
                     <aside className={`${styles.streamConfigFormDiv} ${configFormVisible ? styles.active : styles.hide}`}>
@@ -89,7 +89,7 @@ const onAir = () => {
                     </aside>
                 </main>
             </div>
-        </Layout >
+        </>
     )
 }
 
