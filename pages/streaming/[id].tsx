@@ -1,13 +1,31 @@
-import { KeyboardEvent, useState } from 'react'
+import { KeyboardEvent, useEffect, useState, useContext } from 'react'
 import { GetStaticPaths, GetStaticProps } from "next";
 import { slideData } from "../../interfaces/globalTypes";
 import getDatas from "../../utils/getDatas";
 import styles from '../../styles/streamingView.module.scss'
+import { socketContext } from "../../utils/context"
 
 const StreamingView = ({ pageData }: { pageData: slideData }) => {
 
     const [isChattingOn, setIsChattingOn] = useState(false)
     const [chats, setChats] = useState<Array<{ id: string, chat: string }>>([])
+    const socket = useContext(socketContext)
+
+    useEffect(() => {
+        socket.on("joined", (message: string) => {
+            console.log(message)
+        })
+        joinRoom();
+    })
+
+    const joinRoom = () => {
+        socket.emit("join", { room: pageData.id })
+        console.log("emit join", socket)
+    }
+
+    const leaveRoom = () => {
+        socket.emit("leave",)
+    }
 
     const sendChat = () => {
         let inputValue = document.getElementById("chatInput") as HTMLInputElement

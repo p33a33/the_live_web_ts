@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import Layout from "../../../components/Layout/Layout"
 import styles from "../../../styles/onAir.module.scss"
 
 const onAir = () => {
