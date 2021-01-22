@@ -4,6 +4,8 @@ import { slideData } from "../../interfaces/globalTypes";
 import getDatas from "../../utils/getDatas";
 import styles from '../../styles/streamingView.module.scss'
 import { socketContext } from "../../utils/context"
+import { actions, listening } from "../../utils/clientSocketManager"
+import { createPeerConnection } from '../../utils/rtc'
 
 const StreamingView = ({ pageData }: { pageData: slideData }) => {
 
@@ -12,20 +14,21 @@ const StreamingView = ({ pageData }: { pageData: slideData }) => {
     const socket = useContext(socketContext)
 
     useEffect(() => {
-        socket.on("joined", (message: string) => {
-            console.log(message)
+        /* 소켓 통신 설정 */
+        let pc = createPeerConnection();
+        actions.joinRoom("streamTest")
+
+        socket.on("offer", async (offer: RTCSessionDescriptionInit) => {
+            console.log(offer)
+            pc.setRemoteDescription(offer)
+            let answer: RTCSessionDescriptionInit = await pc.createAnswer()
+            pc.setLocalDescription(answer)
+            actions.sendAnswer(answer)
         })
-        joinRoom();
-    })
-
-    const joinRoom = () => {
-        socket.emit("join", { room: pageData.id })
-        console.log("emit join", socket)
-    }
-
-    const leaveRoom = () => {
-        socket.emit("leave",)
-    }
+        listening.joined()
+        listening.left()
+        return () => actions.leaveRoom("streamTest")
+    }, [])
 
     const sendChat = () => {
         let inputValue = document.getElementById("chatInput") as HTMLInputElement

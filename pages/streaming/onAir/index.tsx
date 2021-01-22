@@ -1,5 +1,8 @@
 import { useEffect, useState } from "react"
+import { actions, listening } from "../../../utils/clientSocketManager"
 import styles from "../../../styles/onAir.module.scss"
+import { socket } from "../../../utils/context"
+import { createPeerConnection } from "../../../utils/rtc"
 
 const onAir = () => {
 
@@ -15,20 +18,37 @@ const onAir = () => {
         () => {
             let video = document.getElementById("video") as HTMLVideoElement
             let localStream: MediaStream;
-            navigator.mediaDevices.getUserMedia({ video: true, audio: false })
-                .then(stream => {
-                    localStream = stream
-                    video.srcObject = stream;
-                    video.style.objectFit = "cover"
-                    video.style.width = "100%"
-                    video.style.height = "70vh"
-                    video.play();
-                })
-                .catch(err => console.log("An error occurred: " + err))
+            let pc: RTCPeerConnection = createPeerConnection()
 
+            /* socket.io 설정 */
+            listening.joined()
+            listening.left()
+            actions.joinRoom("streamTest");
+
+            /* 스트리머 미디어 받아 Peer에 추가, Preview 렌더 */
+            (async () => {
+                localStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: false })
+                console.log([...localStream.getTracks()])
+                pc.addTrack([...localStream.getTracks()][0])
+                console.log(pc)
+                let offer = await pc.createOffer()
+                pc.setLocalDescription(offer) // => oniceCandidate trigger
+                socket.on("viewerIn", () => {
+                    console.log("recognize viewer")
+                    actions.sendOffer(offer)
+                })
+                socket.on("answer", (answer: RTCSessionDescriptionInit) => {
+                    pc.setRemoteDescription(answer)
+                })
+                video.srcObject = localStream
+                video.play();
+            })()
+
+            /* 컴포넌트 종료시 */
             return () => {
                 video.pause();
                 localStream.getTracks()[0].stop();
+                actions.leaveRoom("streamTest")
             }
         }, []
     )
@@ -67,7 +87,7 @@ const onAir = () => {
                     </aside>
                     <section className={styles.videoArea}>
                         <div className={styles.videoPannel}>
-                            <video id="video" className={styles.preview} />
+                            <video id="video" className={styles.preview} style={{ objectFit: "cover", width: `100%`, height: `70vh` }} />
                         </div>
                         <div className={styles.boradcastDescription}>
                             <h1>{title || "방송 제목이 표시됩니다"}</h1>
@@ -83,7 +103,6 @@ const onAir = () => {
                     </section>
                     <aside className={`${styles.chatArea} ${chatVisible ? styles.active : styles.hide}`}>
                         <div className={`${styles.chatRender} ${chatVisible ? styles.active : styles.hide}`}>
-
                         </div>
                     </aside>
                 </main>
